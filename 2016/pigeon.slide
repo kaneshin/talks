@@ -64,7 +64,7 @@ Make sure that pigeon was installed correctly:
 
 * GAE
 
-[[https://kaneshin-lab.appspot.com][https://kaneshin-lab.appspot.com]]
+[[http://kaneshin-co.appspot.com/v1/vision][http://kaneshin-co.appspot.com/v1/vision]]
 
 	$ cd /path/to/pigeon/tools/appengine
 	$ direnv
