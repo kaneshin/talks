@@ -1,0 +1,82 @@
+Pigeon - Cloud Vision API on Golang
+Shibuya.go #2
+22 Mar 2016
+
+Shintaro Kaneko (kaneshin)
+Gopher at eureka
+@kaneshinth
+kaneshin0120@gmail.com
+
+* Pigeon
+
+* Pigeon - Google Cloud Vision API on Golang
+
+Overview
+
+pigeon is a package for the Google Cloud Vision API on Golang.
+It also provides pigeon command and pigeon-app which is serving an image to submit.
+
+Prerequisite
+
+[[https://console.cloud.google.com/apis/credentials][Credentials - Google Cloud Platform Console]]
+
+	export GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
+
+* Installation - pigeon and pigeon-app commands
+
+pigeon provides the command-line tools.
+
+	$ go get github.com/kaneshin/pigeon/tools/cmd/...
+
+Make sure that pigeon was installed correctly:
+
+	$ pigeon -h
+	$ pigeon-app -h
+
+* CLI - Text Detection (OCR)
+
+.image https://storage.googleapis.com/kaneshin-misc/ocr.png 300 _
+
+	$ pigeon -text https://storage.googleapis.com/kaneshin-misc/ocr.png
+
+* CLI - Safe Search
+
+.image pigeon/lenna.jpg
+
+	$ pigeon -safe-search gs://kaneshin-misc/lenna.jpg
+	[{
+	    "safeSearchAnnotation": {
+	        "adult": "POSSIBLE",
+	            "medical": "UNLIKELY",
+	            "spoof": "VERY_UNLIKELY",
+	            "violence": "VERY_UNLIKELY"
+	    }
+	}]
+
+
+* WebApp
+
+[[http://localhost:8080/][http://localhost:8080/]]
+
+	$ pigeon-app -port=8080 -- -label
+
+.image pigeon/pigeon-app.gif
+
+* GAE
+
+[[http://kaneshin-co.appspot.com/v1/vision][http://kaneshin-co.appspot.com/v1/vision]]
+
+	$ cd /path/to/pigeon/tools/appengine
+	$ direnv
+	$ goapp deploy -application [your-project-id] ./src/app
+
+.image pigeon/pigeon-app.gif
+
+* References
+
+- [[http://kaneshin.github.io/2016/02/27/pigeon/][Pigeon - Library for Cloud Vision API]]
+- [[https://github.com/kaneshin/pigeon][kaneshin/pigeon]]
+- [[https://godoc.org/github.com/kaneshin/pigeon][GoDoc - kaneshin/pigeon]]
+- [[https://cloud.google.com/vision/][Cloud Vision API]]
+- [[https://cloud.google.com/vision/docs][Cloud Vision API/Documentation]]
+
